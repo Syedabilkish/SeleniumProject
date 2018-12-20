@@ -64,11 +64,8 @@ public class ELTC_019POM {
 		this.editProfile.click();
 	}
 	
-	public void currPassword(String currpassword) {
-		Actions builder2 = new Actions(driver);
-		builder2.moveToElement(this.currpassword); 
-		this.password.sendKeys(currpassword); 
-	}
+
+	
 	public void newPassword(String nwpassword) {
 		this.password.clear(); 
 		this.password.sendKeys(nwpassword); 
