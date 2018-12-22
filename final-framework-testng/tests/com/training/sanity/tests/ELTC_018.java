@@ -1,9 +1,10 @@
+/*ELTC_018: Admin should able to change the password successfully */
 package com.training.sanity.tests;
 
 import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
-import com.training.pom.ChangePasswordPOM;
+import com.training.pom.ELTC_018POM;
 import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
@@ -20,53 +21,64 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
-public class ChangePassword_ELTC_018 
+public class ELTC_018 
 {
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
-	private ChangePasswordPOM ChangePasswordPOM;
+	private ELTC_018POM ChangePasswordPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
+	private String actualResult;
+	private String expectedResult = "Your new profile has been saved";
 
 	@BeforeClass
-	public static void setUpBeforeClass() throws IOException {
+	public void setUpBeforeClass() throws IOException {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
 		properties.load(inStream);
-	}
-
-	@BeforeMethod
-	public void setUp() throws Exception {
+		
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
-		ChangePasswordPOM = new ChangePasswordPOM(driver);
+		ChangePasswordPOM = new ELTC_018POM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
 		driver.get(baseUrl);
 	}
+
 	
-	@AfterMethod
+	@AfterTest
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test
+	@Test(priority=1)
 	public void validLoginTest() throws InterruptedException {
+		//Performing valid login
 		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
+		loginPOM.sendPassword("bilkish@1234");
 		loginPOM.clickLoginBtn(); 
 		Thread.sleep(1000);
+		screenShot.captureScreenShot("ELTC_0182");
+	}
+	@Test(priority=2)
+	public void changePasswordTest() throws InterruptedException {
+		//Clicking on HomePage
 		ChangePasswordPOM.moveandclickhomePage();
+		//Click on Edit Profile
 		ChangePasswordPOM.clickeditprofile();
 		Thread.sleep(1000);
-		ChangePasswordPOM.currPassword("admin@123");
-		ChangePasswordPOM.newPassword("bilkish@1234");
-		ChangePasswordPOM.cofirmPassword("bilkish@1234");
+	    //Giving the existing Password
+		ChangePasswordPOM.currPassword("bilkish@1234");
+		//Giving new Password
+		ChangePasswordPOM.newPassword("admin@123");
+		//Confirming new Password
+		ChangePasswordPOM.cofirmPassword("admin@123");
+		//Clicking on save button
 		ChangePasswordPOM.clicksavechangeBtn();
-		screenShot.captureScreenShot("ELTC_018");
+		actualResult=ChangePasswordPOM.MsgAfterChangingPassword().trim();
+		screenShot.captureScreenShot("ELTC_0182");
 	}
-	
 }
 

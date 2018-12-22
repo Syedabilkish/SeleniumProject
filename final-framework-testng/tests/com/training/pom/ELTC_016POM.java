@@ -7,11 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-public class ELTC_019POM {
- 
+public class ELTC_016POM {
 	private WebDriver driver; 
 	
-	public ELTC_019POM(WebDriver driver) {
+	public ELTC_016POM(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -25,15 +24,14 @@ public class ELTC_019POM {
 	@FindBy(id="formLogin_submitAuth")
 	private WebElement loginBtn;
 	
-	@FindBy(xpath="//*[@id='menuone']/ul[1]/li[7]/a")
-	private WebElement administration;
+	@FindBy(xpath="//*[@id='menuone']/ul[2]/li[2]/a/img")
+	private WebElement imgCircle;
 	
-	@FindBy(linkText="User list")
-	private WebElement userlist;
+	@FindBy(id="logout_button")
+	private WebElement logoutBtn;
 	
-	@FindBy(xpath="//*[@id='page-breadcrumb']/ul/li[2]")
-	private WebElement userListDisplayed;
-	
+	@FindBy(xpath="//*[@id='content-section']/div/div[2]/div[2]/div/section/div[1]/h4")
+	private WebElement AfterLogout;
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -49,22 +47,21 @@ public class ELTC_019POM {
 		this.loginBtn.click(); 
 	}
 	
-	public void clicadministration()
+	public void movemouseimgCircle()
 	{
 		Actions builder = new Actions(driver);
-		builder.moveToElement(this.administration);
-		this.administration.click();
+		builder.moveToElement(this.imgCircle).build().perform();
+		this.imgCircle.click();
 	}
 	
-	public void clicuserlist()
+	public void clicklogoutBtn()
 	{
-		Actions builder = new Actions(driver);
-		builder.moveToElement(this.userlist);
-		this.userlist.click();
+		Actions builder1 = new Actions(driver);
+		builder1.moveToElement(this.logoutBtn).build().perform();
+		this.logoutBtn.click();
 	}
-	public String MsgOnClickingUserlist() 
+	public String MsgAfterlogout() 
 	{
-		return this.userListDisplayed.getText();
+		return this.AfterLogout.getText();
 	}
 }
-

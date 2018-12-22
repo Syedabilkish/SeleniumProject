@@ -7,11 +7,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ChangePasswordPOM 
+public class ELTC_018POM 
 {
 	private WebDriver driver; 
 	
-	public ChangePasswordPOM(WebDriver driver) {
+	public ELTC_018POM(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -31,7 +31,7 @@ public class ChangePasswordPOM
 	@FindBy(xpath="//*[@id='profileCollapse']/div/ul/li[4]/a")
 	private WebElement editProfile;
 	
-	@FindBy(xpath="//*[@id='profile_password0']")
+	@FindBy(id="profile_password0")
 	private WebElement currpassword;
 	
 	@FindBy(xpath="//*[@id='password1']")
@@ -42,6 +42,9 @@ public class ChangePasswordPOM
 	
 	@FindBy(name="apply_change")
 	private WebElement savechangeBtn;
+	
+	@FindBy(xpath="//*[@id='content-section']/div/div[2]/div/div[1]")
+	private WebElement passwordChanged;
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -74,18 +77,22 @@ public class ChangePasswordPOM
 	public void currPassword(String currpassword) {
 		Actions builder2 = new Actions(driver);
 		builder2.moveToElement(this.currpassword); 
-		this.password.sendKeys(currpassword); 
+		this.currpassword.sendKeys(currpassword); 
 	}
 	public void newPassword(String nwpassword) {
-		this.password.clear(); 
-		this.password.sendKeys(nwpassword); 
+		this.nwpassword.clear(); 
+		this.nwpassword.sendKeys(nwpassword); 
 	}
 	public void cofirmPassword(String confirmpassword) {
-		this.password.clear(); 
-		this.password.sendKeys(confirmpassword);
+		this.confirmpassword.clear(); 
+		this.confirmpassword.sendKeys(confirmpassword);
 		}
 	public void clicksavechangeBtn(){
 		this.savechangeBtn.click();
+	}
+	public String MsgAfterChangingPassword() 
+	{
+		return this.passwordChanged.getText();
 	}
 }
 

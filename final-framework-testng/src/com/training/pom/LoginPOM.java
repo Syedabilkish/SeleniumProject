@@ -24,11 +24,7 @@ public class LoginPOM {
 	@FindBy(id="formLogin_submitAuth")
 	private WebElement loginBtn;
 	
-	@FindBy(xpath="//*[@id='menuone']/ul[2]/li[2]/a/img")
-	private WebElement imgCircle;
 	
-	@FindBy(id="logout_button")
-	private WebElement logoutBtn;
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -44,17 +40,4 @@ public class LoginPOM {
 		this.loginBtn.click(); 
 	}
 	
-	public void movemouseimgCircle()
-	{
-		Actions builder = new Actions(driver);
-		builder.moveToElement(this.imgCircle);
-		this.imgCircle.click();
-	}
-	
-	public void clicklogoutBtn()
-	{
-		Actions builder1 = new Actions(driver);
-		builder1.moveToElement(this.logoutBtn);
-		this.logoutBtn.click();
-	}
 }
