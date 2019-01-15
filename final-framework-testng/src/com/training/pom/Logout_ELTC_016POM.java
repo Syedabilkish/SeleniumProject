@@ -1,3 +1,4 @@
+
 package com.training.pom;
 
 import org.openqa.selenium.WebDriver;
@@ -7,10 +8,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-public class ELTC_016POM {
+public class Logout_ELTC_016POM {
 	private WebDriver driver; 
 	
-	public ELTC_016POM(WebDriver driver) {
+	public Logout_ELTC_016POM(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}

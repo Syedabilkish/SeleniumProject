@@ -65,7 +65,7 @@ public class ELTC_050 {
 		eltc_20POM.clickOnaAddaSessionlink();
 		Thread.sleep(2000);
 		//Giving the session name
-		eltc_20POM.sendSessionName("New Selenium Session2");
+		eltc_20POM.sendSessionName("New Selenium Session4");
 		//Clicking on next step
 		eltc_20POM.clickOnnextstep();
 		screenShot.captureScreenShot("ELTC_050");

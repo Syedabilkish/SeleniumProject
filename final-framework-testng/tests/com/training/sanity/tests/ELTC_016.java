@@ -2,9 +2,8 @@
 package com.training.sanity.tests;
 
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
-import com.training.pom.ELTC_016POM;
+import com.training.pom.Logout_ELTC_016POM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
@@ -24,7 +23,7 @@ import org.testng.annotations.AfterClass;
 public class ELTC_016 {
 	private WebDriver driver;
 	private String baseUrl;
-	private ELTC_016POM logoutPOM;
+	private Logout_ELTC_016POM logoutPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 	private String actualResult;
@@ -37,7 +36,7 @@ public class ELTC_016 {
 		properties.load(inStream);
 		
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		logoutPOM = new ELTC_016POM(driver); 
+		logoutPOM = new Logout_ELTC_016POM(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 

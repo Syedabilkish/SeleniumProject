@@ -1,4 +1,4 @@
-package com.training.regression.tests;
+package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,21 +8,18 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.training.bean.LoginBean;
-import com.training.dao.ELearningDAO;
 import com.training.dataproviders.LoginDataProviders;
 import com.training.generics.ScreenShot;
-import com.training.pom.LoginPOM;
+import com.training.pom.SignUPwithBDPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginDBTest {
+public class ELTC_078Test {
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private SignUPwithBDPOM loginPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -36,7 +33,7 @@ public class LoginDBTest {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver);
+		loginPOM = new SignUPwithBDPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver);
 		// open the browser
@@ -51,11 +48,19 @@ public class LoginDBTest {
 
 
 	@Test(dataProvider = "db-inputs", dataProviderClass = LoginDataProviders.class)
-	public void loginDBTest(String userName, String password) {
-		loginPOM.sendUserName(userName);
-		loginPOM.sendPassword(password);
-		loginPOM.clickLoginBtn();
-		screenShot.captureScreenShot(userName);
+	public void loginDBTest(String FirstName, String LastName, String Email_id, String username)
+	{
+		loginPOM.SignUplink();
+		loginPOM.sendFirstName(FirstName);
+		loginPOM.sendLastName(LastName);
+		loginPOM.sendEmail(Email_id);
+		loginPOM.sendUserid(username);
+		loginPOM.sendpassword("password");
+		loginPOM.sendpassword2("password");
+		loginPOM.sendphoneNo("123456890");
+		loginPOM.clickRadioBtn();
+		loginPOM.clickRegistrationBtn();
+		screenShot.captureScreenShot();
 
 	}
 

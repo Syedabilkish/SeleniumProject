@@ -3,13 +3,14 @@ package com.training.dataproviders;
 import java.util.List;
 
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import com.training.bean.LoginBean;
 import com.training.dao.ELearningDAO;
+import com.training.readexcel.ApachePOIExcel2Read;
 import com.training.readexcel.ApachePOIExcelRead;
 
-public class LoginDataProviders {
-
+public class SignUpDataProvider_077 {
 	@DataProvider(name = "db-inputs")
 	public Object [][] getDBData() {
 
@@ -33,9 +34,9 @@ public class LoginDataProviders {
 	
 	@DataProvider(name = "excel-inputs")
 	public Object[][] getExcelData(){
-		String fileName = "C:/Users/IBM_ADMIN/Desktop/SELENIUM/ELTC_076.xlsx";
+		String fileName = "C:/Users/IBM_ADMIN/Desktop/SELENIUM/ELTC_077.xlsx";
 
-		List<List<Object>> retVal = ApachePOIExcelRead.getExcelContent(fileName);
+		List<List<Object>> retVal = ApachePOIExcel2Read.getExcelContent(fileName);
 		System.out.println("size " + retVal.size());
 		
 		Object[][] result = new Object[retVal.size()][retVal.size()]; 
@@ -68,3 +69,4 @@ public class LoginDataProviders {
 	
 	
 }
+
